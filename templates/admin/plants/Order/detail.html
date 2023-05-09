@@ -1,0 +1,28 @@
+{% extends 'admin/base_site.html' %}
+{% load i18n admin_urls %}
+{% block content %}
+
+    <h1>Order by {{ object.user }} {{ object.created.date }}</h1>
+
+    <dl>
+        <dt>Name:</dt>
+        <dd>{{ object.user.get_full_name }}</dd>
+        <dt>Email:</dt>
+        <dd>{{ object.user.email }}</dd>
+        
+    </dl>
+
+{% endblock %}
+
+{% block breadcrumbs %}
+
+<div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">{% translate 'Home' %}</a>
+    {% comment %} <a href="{% url 'admin:newpage'%}">{% translate 'farmer'%}</a> {% endcomment %}
+    &rsaquo; <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ opts.app_config.verbose_name }}</a>
+    &rsaquo; <a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>
+    &rsaquo; 
+    &rsaquo; {{ object }}
+</div>
+
+{% endblock %}

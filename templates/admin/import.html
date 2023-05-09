@@ -1,0 +1,31 @@
+
+{% extends 'admin/base_site.html' %}
+
+{% load i18n admin_urls %}
+{% block content %}
+
+<form action=" " method= 'post' enctype="multipart/form-data">
+{{form.as_p}}
+{% csrf_token %}
+{% comment %} <input type="file"> {% endcomment %}
+<button class="btn btn-warning" type="import">import</button>
+
+
+
+</form>
+{% if excel %}
+<h1>{{excel|safe|escape }}</h1>
+
+{% endif %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js" integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    $('head').append('<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">');
+    let dt = document.querySelector('.dataframe')
+    $(dt).DataTable();
+</script>
+
+
+{% endblock %}
+
